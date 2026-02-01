@@ -1,4 +1,5 @@
 main change line
 local change
 feature change line
-new bug fix
+new bug fixgit
+Goodbye
