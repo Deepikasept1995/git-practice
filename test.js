@@ -13,5 +13,5 @@ const result = orders.reduce ((acc, order) => {
       totalAmount : (acc[order.status]?.totalAmount || 0) + order.amount
     }
   }
-}, {});
+},{});
 console.log(result);
