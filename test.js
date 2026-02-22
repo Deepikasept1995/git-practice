@@ -1,21 +1,24 @@
 const orders = [
-  {id:1, amount:500, status:"DELIVERED"},
-  {id:2, amount:2000, status:"DELIVERED"},
-  {id:3, amount:1500, status:"PENDING"},
-  {id:4, amount:3000, status:"DELIVERED"},
+  { id: 1, user: "Ravi", amount: 1200, status: "DELIVERED" },
+  { id: 2, user: "Neha", amount: 800, status: "PENDING" },
+  { id: 3, user: "Karan", amount: 2200, status: "DELIVERED" },
+  { id: 4, user: "Pooja", amount: 500, status: "DELIVERED" },
 ];
 
-const result = orders.reduce(
-  (acc, order) => {
-    if (order.status === "DELIVERED") {
-      acc.totalamount += order.amount;
-      acc.count += 1;
-    }
-    return acc;
-  },
-  { totalamount: 0, count: 0 }
-);
+const summary = orders
+.reduce ((acc, {status, amount}) => {
+  if (!acc[status]) {
+    acc[status] = { totalAmount: 0 };
+  }
+  acc[status].totalAmount += amount;
+  return acc;
+}, {});
 
-const average = result.count > 0 ? (result.totalamount / result.count).toFixed(2) : 0.00;
+const topStatus = Object.entries(summary).reduce((max, [status, { totalAmount }]) => {
+  if (totalAmount > max.totalAmount) {
+    return { status, totalAmount };
+  }
+  return max;
+}, { status: null, totalAmount: 0 });
 
-console.log({status: result.count > 0 ? "DELIVERED" : "PENDING", average: average});
+console.log(topStatus);
