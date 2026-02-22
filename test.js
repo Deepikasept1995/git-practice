@@ -5,20 +5,9 @@ const orders = [
   { id: 4, user: "Pooja", amount: 500, status: "DELIVERED" },
 ];
 
-const summary = orders
-.reduce ((acc, {status, amount}) => {
-  if (!acc[status]) {
-    acc[status] = { totalAmount: 0 };
-  }
-  acc[status].totalAmount += amount;
-  return acc;
-}, {});
-
-const topStatus = Object.entries(summary).reduce((max, [status, { totalAmount }]) => {
-  if (totalAmount > max.totalAmount) {
-    return { status, totalAmount };
-  }
-  return max;
-}, { status: null, totalAmount: 0 });
-
-console.log(topStatus);
+const STATUS = { DELIVERED: "DELIVERED" };
+const deliveredRevenue = orders
+  .filter(({ status }) => status === STATUS.DELIVERED)
+  .reduce((total, { amount }) => total + amount, 0);
+  
+console.log(`Total Delivered Revenue: ${deliveredRevenue}`);
