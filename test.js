@@ -1,9 +1,6 @@
-const objectTransformation = (users) => {
-  const result = [];
-  for (const user of users) {
-    result.push({ name: user.name, eligible: user.balance >= 1000 });
-  }
-  return result;
-};
+const a = { x: 1, nested: { y: 10 } };
+const b = { ...a };
 
-console.log(objectTransformation(users));
+b.nested.y = 999;
+
+console.log(a.nested.y);
