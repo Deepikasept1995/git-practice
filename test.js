@@ -1,26 +1,32 @@
-const transactions = [
-  { id: 1, user: "Ravi", type: "CREDIT", amount: 500 },
-  { id: 2, user: "Ravi", type: "DEBIT", amount: 200 },
-  { id: 3, user: "Neha", type: "CREDIT", amount: 800 },
-  { id: 4, user: "Ravi", type: "CREDIT", amount: 700 },
-  { id: 5, user: "Neha", type: "DEBIT", amount: 100 },
+const orders = [
+  { id: 1, user: "Ravi", amount: 1200, status: "DELIVERED", items: 3, createdAt: "2026-02-25T10:10:00+05:30" },
+  { id: 2, user: "Neha", amount: 800, status: "PENDING", items: 1, createdAt: "2026-02-25T11:20:00+05:30" },
+  { id: 3, user: "Ravi", amount: 2000, status: "DELIVERED", items: 4, createdAt: "2026-02-26T09:15:00+05:30" },
+  { id: 4, user: "Karan", amount: 500, status: "CANCELLED", items: 2, createdAt: "2026-02-26T21:40:00+05:30" },
+  { id: 5, user: "Neha", amount: 1500, status: "DELIVERED", items: 2, createdAt: "2026-02-27T08:05:00+05:30" },
+  { id: 6, user: "Pooja", amount: 2600, status: "DELIVERED", items: 5, createdAt: "2026-02-27T19:30:00+05:30" }
 ];
 
-const result = transactions
-    .reduce (( acc, { user, type, amount }) => {
-        if (!acc.netByUser[user]) {
-            acc.netByUser[user] = 0;
-        }
-        if (type === "CREDIT") {
-            acc.netByUser[user] += amount;
-        } else if (type === "DEBIT") {
-            acc.netByUser[user] -= amount;
-        }
-        if (acc.netByUser[user] > acc.maxAmount) {
-            acc.maxAmount = acc.netByUser[user];
-            acc.richestUser = user;
-        }
-        return acc;
-    }, { netByUser: {}, richestUser: null, maxAmount: 0 });
+function topUserToday(orders) {
+    const today = "2026-02-27"; // safer for testing
 
-console.log({ netByUser: result.netByUser, richestUser: result.richestUser });
+    return orders.reduce((acc, order) => {
+
+        if (order.createdAt.startsWith(today) && order.status === "DELIVERED") {
+
+            // 1️⃣ Track revenue per user
+            acc[order.user] = (acc[order.user] || 0) + order.amount;
+
+            // 2️⃣ Check if this user is now highest
+            if (acc[order.user] > acc.revenue) {
+                acc.user = order.user;
+                acc.revenue = acc[order.user];
+            }
+        }
+
+        return acc;
+
+    }, { user: "", revenue: 0 });
+}
+
+console.log(topUserToday(orders));
