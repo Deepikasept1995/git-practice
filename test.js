@@ -1,14 +1,22 @@
-let count = 5;
+const orders = [
+  { id: 1, amount: 1200, status: "DELIVERED" },
+  { id: 2, amount: 800, status: "PENDING" },
+  { id: 3, amount: 2500, status: "DELIVERED" },
+  { id: 4, amount: 400, status: "DELIVERED" }
+];
 
-const timer = setInterval(function() {
-    const randomNumber = Math.floor(Math.random() * 10) + 1;
-    console.log(`Random number: ${randomNumber}`);
-    count--;
+const result = orders
+    .reduce ((acc, order) => {
+        acc.totalOrders++;
+        if (order.amount > acc.highestOrder) {
+            acc.highestOrder = order.amount;
+        }
+        if (!acc.statuses[order.status]) {
+            acc.statuses[order.status] = { count: 0, revenue: 0 };
+        }
+        acc.statuses[order.status].count += 1;
+        acc.statuses[order.status].revenue += order.amount;
+        return acc;
+    }, { totalOrders: 0, statuses: {}, highestOrder: 0 });
 
-    if (count === 0) {
-        clearInterval(timer);
-        console.log('Stopped after 5 prints');
-    }
-}, 1000);
-
-console.log('Timer started!'); 
+console.log(result);
