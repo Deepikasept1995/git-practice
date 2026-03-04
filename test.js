@@ -1,22 +1,31 @@
 const orders = [
-  { id: 1, amount: 1200, status: "DELIVERED" },
-  { id: 2, amount: 800, status: "PENDING" },
-  { id: 3, amount: 2500, status: "DELIVERED" },
-  { id: 4, amount: 400, status: "DELIVERED" }
+ {user:"Ravi", amount:500},
+ {user:"Neha", amount:1200},
+ {user:"Ravi", amount:700},
+ {user:"Amit", amount:2000},
+ {user:"Neha", amount:300}
 ];
 
 const result = orders
-    .reduce ((acc, order) => {
-        acc.totalOrders++;
-        if (order.amount > acc.highestOrder) {
-            acc.highestOrder = order.amount;
-        }
-        if (!acc.statuses[order.status]) {
-            acc.statuses[order.status] = { count: 0, revenue: 0 };
-        }
-        acc.statuses[order.status].count += 1;
-        acc.statuses[order.status].revenue += order.amount;
-        return acc;
-    }, { totalOrders: 0, statuses: {}, highestOrder: 0 });
+  .reduce ((acc, order) => {
+      acc.totalOrders++;
+      acc.totalReveue += order.amount;
+      if (order.amount > acc.highestOrder){
+        acc.highestOrder = order.amount
+      }
+
+    return acc;
+
+}, {totalOrders: 0, highestOrder: 0, totalReveue: 0});
+
+result.averageOrderValue = result.totalReveue /result.totalOrders;
 
 console.log(result);
+
+
+
+
+
+  
+
+
