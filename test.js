@@ -6,21 +6,13 @@ const orders = [
  {user:"Neha", amount:300}
 ];
 
-const result = orders
-  .reduce ((acc, order) => {
-      acc.totalOrders++;
-      acc.totalReveue += order.amount;
-      if (order.amount > acc.highestOrder){
-        acc.highestOrder = order.amount
-      }
+const result = orders.reduce((acc, order) => { 
+  acc[order.user] = (acc[order.user] || 0) + order.amount;
+  return acc;
 
-    return acc;
+}, {});
 
-}, {totalOrders: 0, highestOrder: 0, totalReveue: 0});
-
-result.averageOrderValue = result.totalReveue /result.totalOrders;
-
-console.log(result);
+console.log (result);
 
 
 
