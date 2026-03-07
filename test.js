@@ -1,18 +1,11 @@
-const orders = [
- {user:"Ravi", amount:500},
- {user:"Neha", amount:1200},
- {user:"Ravi", amount:700},
- {user:"Amit", amount:2000},
- {user:"Neha", amount:300}
-];
+const numbers = [1,2,3,4,5];
 
-const result = orders.reduce((acc, order) => { 
-  acc[order.user] = (acc[order.user] || 0) + order.amount;
-  return acc;
+const result = numbers.reduce((acc, num) => {
+  acc += num * num;
+    return acc;  
+},0);
 
-}, {});
-
-console.log (result);
+console.log(result);  
 
 
 
