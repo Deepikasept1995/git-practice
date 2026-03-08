@@ -1,16 +1,8 @@
-const numbers = [1,2,3,4,5];
-
-const result = numbers.reduce((acc, num) => {
-  acc += num * num;
-    return acc;  
-},0);
-
-console.log(result);  
-
-
-
-
-
-  
-
-
+const car = {
+  brand: "BMW",
+  speed: "50MPH",
+  drive: function() {
+    console.log (`${this.brand} is driving at ${this.speed}`);
+  }
+};
+car.drive();
