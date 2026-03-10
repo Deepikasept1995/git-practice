@@ -1,27 +1,21 @@
-const orders = [
- {product:"Phone", amount:500},
- {product:"Laptop", amount:1000},
- {product:"Phone", amount:700},
- {product:"Tablet", amount:300},
- {product:"Laptop", amount:800}
-];
+const nums = [1,2,2,3,3,3,4];
 
-const totals = orders.reduce((acc, order) => {
+const result = nums.reduce((acc, num) => {
 
-  acc[order.product] = (acc[order.product] || 0) + order.amount;
+  acc.counts[num] = (acc.counts[num] || 0) + 1;
 
-  return acc;
-
-}, {});
-
-const result = Object.entries(totals).reduce ((acc, [product, totals]) => {
-  if (totals > acc.maxRevenue) {
-    acc.maxRevenue = totals;
-    acc.topProduct = product;
+  if (acc.counts[num] > acc.count) {
+    acc.count = acc.counts[num];
+    acc.mostFrequent = num;
   }
 
   return acc;
 
-}, {topProduct: null, maxRevenue: 0});
+}, {counts:{}, mostFrequent:null, count:0});
 
-console.log(result);
+console.log({
+  mostFrequent: result.mostFrequent,
+  count: result.count
+});
+
+
