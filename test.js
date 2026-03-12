@@ -1,9 +1,18 @@
-const key = "age";
+console.log("start");
 
-const person = {
-  age: 30,
-  key: 50
-};
+Promise.resolve().then(() => {
+  console.log("promise1");
+});
 
-console.log(person.key);
-console.log(person[key]);
+setTimeout (() => {
+  console.log("timeout1")
+},0);
+setTimeout (() => {
+  console.log("timeout2")
+},0);
+
+Promise.resolve().then(() => {
+  console.log("promise2");
+});
+
+console.log("end");
