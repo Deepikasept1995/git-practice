@@ -27,8 +27,10 @@ function fetchUsers() {
 
 async function processData() {
   try {
-    const orders = await fetchOrders();
-    const users = await fetchUsers();
+    const [orders, users] = await Promise.all([
+      fetchOrders(),
+      fetchUsers()
+    ]);
     const totalOrders = orders.length;
     const totalRevenue =  orders.reduce ((sum, order) => sum + order.amount);
     const statusCount = orders.reduce ((acc, order) => {acc[order.status] = (acc[order.status] || 0) + 1;
@@ -42,7 +44,7 @@ async function processData() {
     });
     const adultUsers = users.filter ((user) => user.age >= 18)
     .map((user) => `${user.name}-${user.city}`);
-    
+
     console.log(`Total orders: ${totalOrders}`);
     console.log(`Total orders: ${totalRevenue}`);
     console.log("Status Counts:", statusCount);
