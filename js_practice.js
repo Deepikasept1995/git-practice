@@ -195,10 +195,217 @@ function memoFib() {
 
 const fib = memoFib();
 
-console.log(fib(40));*/
+console.log(fib(40));
 
 function fib(n) {
     if (n<= 1) return n;
     return fib(n-1) + fib(n-2);
 }
 console.log(fib(4));
+
+const numbers = [3, 7, 2, 9, 4];
+
+const result = numbers.reduce ((acc, number) => {
+  acc.sum += number;
+  acc.count++;
+  acc.average = acc.sum / acc.count;  
+  return acc;
+},{sum: 0, count: 0, average: 0});
+console.log(result);
+
+const numbers = [2,5,8,3,6,1];
+
+const result = numbers.reduce ((acc, num) => {
+  if (num % 2 === 0) {
+    acc.evenSum +=num;
+  } else acc.oddSum +=num;
+  return acc;
+},{evenSum: 0, oddSum: 0});
+
+console.log(result);
+
+const orders = [
+ {user:"A", amount:200},
+ {user:"B", amount:150},
+ {user:"A", amount:100},
+ {user:"C", amount:300},
+ {user:"B", amount:50}
+];
+
+const result = orders.reduce ((acc, order) => {
+    acc[order.user] = (acc[order.user] || 0) + order.amount;
+  return acc;
+},{});
+console.log(result);
+
+const words = ["apple","banana","apple","orange","banana","apple"];
+
+const result = words.reduce ((acc, word) => {
+  acc[word] = (acc[word] || 0) + 1;
+  return acc;
+},{});
+console.log(result);
+
+const obj = {
+  user: {
+    name: "Sandeep",
+    address: {
+      city: "Bangalore",
+      pincode: 560001
+    }
+  },
+  age: 30
+};
+
+function flattenObject(input, prefix = "", result = {}) {
+  for (const key in input) {
+    const value = input[key];
+    const newKey = prefix ? `${prefix}.${key}` : key;
+
+    if (value !== null && typeof value === "object" && !Array.isArray(value)) {
+      flattenObject(value, newKey, result);
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+}
+console.log(flattenObject(obj));
+
+const orders = [
+ {user: "A", amount: 100},
+ {user: "B", amount: 400},
+ {user: "A", amount: 200},
+ {user: "B", amount: 100},
+ {user: "C", amount: 400}
+];
+
+const metrics = orders.reduce ((acc, order) => {
+    acc.totals[order.user] = (acc.totals[order.user] || 0) + order.amount;
+  return acc;
+
+},{totals: {}, topSpender: {}});
+
+const topSpender = Object.keys(metrics.totals).reduce ((top, p) => {
+  return metrics.totals[top] > metrics.totals[p] ? top : p;
+});
+metrics.topSpender = topSpender;
+
+console.log(metrics);
+
+const arr = [1, [2, [3, [4]], 5]];
+
+function flattenArray(input) {
+  let result = [];
+
+  for (const item of input) {
+    if (Array.isArray(item)) {
+      result = result.concat(flattenArray(item));
+    } else {
+      result.push(item);
+    }
+  }
+
+  return result;
+}
+
+console.log(flattenArray(arr));
+
+const str = "javascript";
+function firstNonRepeatingChar(s) {
+  const count = {};
+
+  for (const ch of s) {
+    count[ch] = (count[ch] || 0) + 1;
+  }
+
+  for (const ch of s) {
+    if (count[ch] === 1) {
+      return ch;
+    }
+  }
+
+  return null;
+}
+
+console.log(firstNonRepeatingChar(str));
+
+chunk([1,2,3,4,5,6,7], 3)
+
+function chunk(arr, size) {
+  const result = [];
+
+  for (let i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
+  }
+
+  return result;
+}
+
+console.log(chunk([1, 2, 3, 4, 5, 6, 7], 3));
+
+
+function debounce(fn, delay) {
+  let timer;
+
+  return function () {
+    clearTimeout(timer);
+
+    timer = setTimeout(() => {
+      fn();
+    }, delay);
+  };
+}
+
+const debounced = debounce(() => {
+  console.log("API Call");
+}, 1000);
+
+debounced();
+debounced();
+debounced();
+
+const user = {
+  name: "Sandeep",
+  age: 30,
+  city: "Bangalore"
+};
+
+function printObject(user) {
+  for (const key in user) {
+    console.log(key, user[key]);
+  }
+}
+
+printObject(user);*/
+
+
+const obj = {
+  user: {
+    name: "Sandeep",
+    city: "Bangalore"
+  },
+  age: 30
+};
+
+function flattenObject(obj, prefix = "") {
+  for (const key in obj) {
+    const value = obj[key];
+    const newKey = prefix ? prefix + "." + key : key;
+
+    if (typeof value === "object" && value !== null) {
+      flattenObject(value, newKey);
+    } else {
+      console.log(newKey, value);
+    }
+  }
+}
+
+flattenObject(obj);
+
+
+
+
+
+
+
