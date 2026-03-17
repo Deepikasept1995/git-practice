@@ -377,7 +377,7 @@ function printObject(user) {
   }
 }
 
-printObject(user);*/
+printObject(user);
 
 
 const obj = {
@@ -403,9 +403,121 @@ function flattenObject(obj, prefix = "") {
 
 flattenObject(obj);
 
+const obj = {
+  a: 1,
+  b: {
+    c: {
+      d: 4
+    },
+    e: 5
+  }
+};
+
+function flatternObject(obj, prefix = "") {
+  for (const key in obj) {
+    const value = obj[key];
+    const newKey = prefix ? prefix + "." + key : key;
+    
+    if (typeof value === "object" && value !== null) {
+      flatternObject(value, newKey);
+    } else {
+      console.log(newKey, value);
+    }
+  }
+}
+flatternObject(obj);
+
+const obj = {
+  a: 1,
+  b: {
+    c: 2,
+    d: 3
+  }
+};
 
 
+function flattenObject(obj, prefix = "", result = {}) {
+  for (const key in obj) {
+    const value = obj[key];
+    const newKey = prefix ? prefix + "." + key : key;
+    if (typeof value === "object" && value !== null) {
+      flattenObject(value, newKey, result);
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+}
+console.log(flattenObject(obj));
 
+const obj = {
+  a: 1,
+  b: {
+    c: {
+      d: 4
+    },
+    e: 5
+  }
+};
 
+function flattenObject (obj, prefix = "", result = {}) {
+  for (const key in obj) {
+    const value = obj[key];
+    const newKey = prefix ? prefix + "." + key : key;
+    if (typeof value === "object" && value !== null) {
+      flattenObject(value, newKey, result);
+    } else {
+      result[newKey] = value;
+    }
+  }
+  return result;
+}
+console.log(flattenObject(obj));
 
+const obj = {
+  a: 2,
+  b: {
+    c: 4,
+    d: {
+      e: 6
+    }
+  }
+};
 
+function countValues (obj) {
+  let count = 0;
+  for (const key in obj) {
+    const value = obj[key];
+    if (typeof value === "object" && value !== null) {
+      count += countValues(value)
+    } else if (typeof value === "number") {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countValues(obj));*/
+
+const obj = {
+  a: 5,
+  b: {
+    c: 12,
+    d: {
+      e: 3
+    }
+  }
+};
+function findMax(obj) {
+  let max = 1;
+  for (const key in obj) {
+    const value = obj[key];
+    if (typeof value === "object") {
+      max *= findMax(value);
+    } else {
+      max *= value;
+    }
+  }
+  return max;
+}
+
+console.log(findMax(obj));
