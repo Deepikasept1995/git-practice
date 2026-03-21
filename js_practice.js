@@ -730,7 +730,7 @@ for (let i = 0; i < arr.length; i++) {
   arr[i].reverse();
 }
 
-console.log(arr);*/
+console.log(arr);
 
 const arr = [
   [1, 3, 5],
@@ -747,4 +747,5 @@ function searchMatrix(arr, target) {
 }
 return false;
 }
-console.log(searchMatrix(arr, 9));
+console.log(searchMatrix(arr, 9));*/
+
