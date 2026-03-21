@@ -496,7 +496,7 @@ function countValues (obj) {
   }
   return count;
 }
-console.log(countValues(obj));*/
+console.log(countValues(obj));
 
 const obj = {
   a: 5,
@@ -521,3 +521,230 @@ function findMax(obj) {
 }
 
 console.log(findMax(obj));
+
+const arr = [1, [2, 3], [4, [5, 6]], 7];
+
+function flattenArray(input) {
+  let result = [];
+  for (const item of input) {
+    if (Array.isArray(item)) {
+      result = result.concat(flattenArray(item));
+    } else {
+      result.push(item);
+    }
+  }
+
+  return result;
+}
+
+console.log(flattenArray(arr));
+
+const nums = [1, 2, 3, 4, 5, 6];
+
+let result = [];
+
+for (let i = 0; i < nums.length; i++) {
+  if (nums[i] % 2 === 0) {
+    result.push(nums[i]);
+  }
+}
+
+console.log(result);
+
+const nums = [1, 2, 3, 4, 5, 6];
+
+let sum = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  if (nums[i] % 2 === 0) {
+    sum += nums[i];
+  }
+}
+
+console.log(sum);
+
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+let sum = 0;
+
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j < arr[i].length; j++) {
+    sum += arr[i][j];
+  }
+}
+
+console.log(sum);
+
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+let maxNumber = -Infinity;
+
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j< arr[i].length; j++) {
+    if (arr[i][j] > maxNumber) {
+      maxNumber = arr[i][j];
+    }
+  } 
+}
+console.log(maxNumber);
+
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+let maxRow = [];
+let maxSum = -Infinity;
+
+for (let i = 0; i < arr.length; i++) {
+  let sum = 0;
+  for (let j = 0; j < arr[i].length; j++){
+      sum += arr[i][j];
+    }
+    if (sum > maxSum){
+      maxSum = sum;
+      maxRow = arr[i];
+    }
+  }
+  console.log (maxRow);
+
+
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+let maxSum = -Infinity;
+let maxIndex = -1;
+
+for (let i = 0; i < arr.length; i++) {
+  let sum = 0;
+
+  for (let j = 0; j < arr[i].length; j++) {
+    sum += arr[i][j];
+  }
+
+  if (sum > maxSum) {
+    maxSum = sum;
+    maxIndex = i;
+  }
+}
+
+console.log(maxIndex);
+
+
+const arr = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
+
+let maxSum = -Infinity;
+let maxIndex = -1;
+
+for (let i = 0; i < arr.length; i++) {
+  let sum = 0;
+
+  for (let j = 0; j < arr[i].length; j++) {
+    sum += arr[i][j];
+  }
+
+  if (sum > maxSum) {
+    maxSum = sum;
+    maxIndex = i;
+  }
+}
+
+console.log(maxIndex);
+
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+let result = [];
+
+for (let j = 0; j < arr[0].length; j++) {
+  result[j] = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    result[j][i] = arr[i][j];
+  }
+}
+
+console.log(result);
+
+const arr = [
+  [1, 2],
+  [3, 4],
+  [5, 6]
+];
+
+let result = [];
+
+for (let j = 0; j < arr[0].length; j++) {
+  console.log(`\n👉 Outer Loop Start (j = ${j})`);
+
+  result[j] = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    console.log(`   i = ${i} → arr[${i}][${j}] = ${arr[i][j]}`);
+
+    result[j][i] = arr[i][j];
+
+    console.log(`   result[${j}][${i}] = ${result[j][i]}`);
+  }
+
+  console.log(`👉 After j = ${j}, result =`, result);
+}
+
+console.log("\n✅ Final Result:", result);
+
+const arr = [
+  [1, 2],
+  [3, 4]
+];
+
+// Step 1: Transpose
+for (let i = 0; i < arr.length; i++) {
+  for (let j = i; j < arr.length; j++) {
+    let temp = arr[i][j];
+    arr[i][j] = arr[j][i];
+    arr[j][i] = temp;
+  }
+}
+
+// Step 2: Reverse each row
+for (let i = 0; i < arr.length; i++) {
+  arr[i].reverse();
+}
+
+console.log(arr);*/
+
+const arr = [
+  [1, 3, 5],
+  [7, 9, 11]
+];
+
+function searchMatrix(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+  for (j = 0; j < arr[i].length; j++) {
+    if (arr[i][j] === target) {
+      return true;
+    }
+  }
+}
+return false;
+}
+console.log(searchMatrix(arr, 9));
