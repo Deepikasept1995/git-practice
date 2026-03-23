@@ -747,5 +747,361 @@ function searchMatrix(arr, target) {
 }
 return false;
 }
-console.log(searchMatrix(arr, 9));*/
+console.log(searchMatrix(arr, 9));
 
+const arr = [
+  [1, 2, 3],
+  [2, 2, 4],
+  [5, 2, 6]
+];
+
+
+function firstOccurence(arr, target) {
+  for (i = 0; i < arr.length; i++) {
+  for (j = 0; j < arr[i].length; j++) {
+    if (arr[i][j] === target) {
+      return [i, j];
+    }
+  }
+  return [-1, -1];
+}
+}
+console.log(firstOccurence(arr, 2));
+
+const arr = [
+  [1,2],
+  [3,4],
+  [5,6]
+];
+let result = [];
+
+for (i = 0; i < arr.length; i++) {
+  for (j = 0; j < arr[i].length; j++) {
+    result.push(arr[i][j]);
+    }
+  }
+  console.log(result);
+
+const arr = [
+  [1,2,3],
+  [4,5,6]
+];
+
+let result = [];
+
+for (i = 0; i < arr.length; i++) {
+  for (j = 0; j < arr[i].length; j++) {
+    if (arr[i][j] % 2 === 0) {
+      result.push(arr[i][j]);
+    }
+    }
+  }
+  console.log(result);
+
+  const arr = [
+  [1,2,3],
+  [4,5,6]
+];
+
+let result = 0;
+
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j < arr[i].length; j++) {
+    if (arr[i][j] % 2 === 0) {
+      result += arr[i][j];
+    }
+    }
+  }
+console.log(result);
+
+const arr = 
+[
+  [1,2,3],
+  [4,5,6]
+];
+
+let result = 0;
+
+for (i = 0; i < arr.length; i++) {
+  for (j =0; j < arr[i].length; j++) {
+    if (arr[i][j] % 2 === 0) {
+      result++;
+    }
+  }
+}
+console.log(result);
+
+const arr = 
+[
+  [1,2,3],
+  [4,5,6]
+];
+
+let number = -Infinity;
+
+  for (i = 0; i < arr.length; i++) {
+  for (j = 0; j < arr[i].length; j++) {
+    if (arr[i][j] % 2 === 0 && arr[i][j] > number) {
+      number = arr[i][j];
+    }
+  }
+}
+console.log(number);
+
+const arr = 
+[
+  [1,2,3],
+  [4,5,6]
+];
+
+let max = -Infinity;
+let secondMax = -Infinity;
+
+  for (i = 0; i < arr.length; i++) {
+  for (j = 0; j < arr[i].length; j++) {
+    let num = arr[i][j];
+    if (num > max) {
+      secondMax = max;
+      max = num;
+    } else if (num > secondMax && num !== max ){
+      secondMax = max;
+    }
+  }
+}
+
+console.log(secondMax);
+
+const arr = [
+  [1,2,3],
+  [4,5,6]
+];
+
+let max = -Infinity;
+let secondMax = -Infinity;
+let thirdMax = -Infinity;
+
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j < arr[i].length; j++) {
+    let num = arr[i][j];
+
+    if (num > max) {
+      thirdMax = secondMax;
+      secondMax = max;
+      max = num;
+    } 
+    else if (num > secondMax && num !== max) {
+      thirdMax = secondMax;
+      secondMax = num;
+    } 
+    else if (num > thirdMax && num !== secondMax && num !== max) {
+      thirdMax = num;
+    }
+  }
+}
+
+console.log([max, secondMax, thirdMax]);
+
+const arr = [
+  [1,2,3],
+  [4,5,6]
+];
+
+function kthLargest (arr, k) {
+  let flat = [];
+
+for (let i = 0; i < arr.length; i++) {
+  for (let j = 0; j < arr[i].length; j++) {
+    flat.push(arr[i][j]);
+  }
+}
+
+flat.sort((a,b) => b - a);
+
+return flat [k -1];
+}
+
+console.log(kthLargest(arr, 2));
+console.log(kthLargest(arr, 3));
+
+const arr = [
+  [1,2,9],
+  [4,8,7]
+];
+function kthLargestDistinct(arr, k) {
+  let flat = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr[i].length; j++) {
+      flat.push(arr[i][j]);
+    }
+  }
+
+  let unique = [];
+
+  for (let i = 0; i < flat.length; i++) {
+    if (!unique.includes(flat[i])) {
+      unique.push(flat[i]);
+    }
+  }
+
+  unique.sort((a, b) => b - a);
+
+  if (k < 1 || k > unique.length) {
+    return "Invalid k";
+  }
+
+  return unique[k - 1];
+}
+
+console.log(kthLargestDistinct(arr, 2));
+console.log(kthLargestDistinct(arr, 3));
+
+const arr = [1,2,3,4,5,6];
+function kthLargest(arr, k) {
+  let top = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    top.push(num);
+
+    // descending sort of small array
+    top.sort((a, b) => b - a);
+
+    if (top.length > k) {
+      top.pop(); // smallest hata diya
+    }
+  }
+
+  return top[k - 1];
+}
+
+console.log(kthLargest([1,2,3,4,5,6], 3));
+
+const arr = [10, 5, 20, 8, 15];
+
+let max = -Infinity;
+let secondMax = -Infinity;
+
+for (let i = 0; i < arr.length; i++) {
+  let num = arr[i];
+
+  if (num > max) {
+    secondMax = max;
+    max = num;
+  } 
+  else if (num > secondMax && num !== max) {
+    secondMax = num;
+  }
+}
+
+console.log(secondMax); // 15
+
+const arr = [10, 5, 20, 8, 15];
+
+let min = Infinity;
+let secondMin = Infinity;
+
+for (let i = 0; i < arr.length; i++) {
+  let num = arr[i];
+if (num < min) {
+  secondMin = min;
+  min = num;
+}
+else if (num < secondMin && num !== min) {
+  secondMin = num;
+}
+}
+console.log (secondMin);
+
+const arr = [2, 7, 11, 15];
+
+function combinedSum(arr, target) {
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        return [arr[i], arr[j]];
+      }
+    }
+  }
+  return [-1];
+}
+
+console.log(combinedSum(arr, 9));
+
+const arr = [2, 7, 11, 15];
+
+function combinedSum(arr, target) {
+  let seen = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    let needed = target - num;
+
+    if (seen[needed]) {
+      return [needed, num];
+    }
+
+    seen[num] = true;
+  }
+
+  return [-1];
+}
+
+console.log(combinedSum(arr, 9));
+
+const arr = [2, 7, 11, 15];
+
+function twoSumIndex(arr, target) {
+  let seen = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    let needed = target - num;
+
+    if (seen[needed] !== undefined) {
+      return [seen[needed], i];
+    }
+
+    seen[num] = i;
+  }
+
+  return [-1, -1];
+}
+
+console.log(twoSumIndex(arr, 9));*/
+
+const arr = [-1, 0, 1, 2, -1, -4];
+
+function threeSum (arr) {
+  arr.sort ((a, b) => a - b);
+  let result = [];
+  for (let i = 0; i < arr.length -2; i++) {
+    if (i > 0 && arr[i] === arr[i - 1]) continue;
+
+    let left = i + 1; 
+    let right = arr.length - 1;
+
+    while (left < right) {
+      let sum = arr[i] + arr[left] + arr[right];
+
+      if (sum === 0) {
+        result.push([arr[i], arr[left], arr[right]]);
+
+        while (arr[left] === arr[left + 1]) left++;
+        while (arr[right] === arr[right - 1]) right--;
+
+        left++;
+        right--;
+      }
+      else if (sum < 0) {
+        left++;
+      }
+      else {
+        right--;
+      }
+    }
+  } 
+  return result;
+}
+console.log(threeSum([-1,0,1,2,-1,-4]));
