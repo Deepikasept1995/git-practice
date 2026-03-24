@@ -1069,9 +1069,10 @@ function twoSumIndex(arr, target) {
   return [-1, -1];
 }
 
-console.log(twoSumIndex(arr, 9));*/
+console.log(twoSumIndex(arr, 9));
 
 const arr = [-1, 0, 1, 2, -1, -4];
+
 
 function threeSum (arr) {
   arr.sort ((a, b) => a - b);
@@ -1105,3 +1106,97 @@ function threeSum (arr) {
   return result;
 }
 console.log(threeSum([-1,0,1,2,-1,-4]));
+
+const arr = [1, 2, 3, 4, 5];
+
+function targetSum (arr, target) {
+  let seen = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j< arr.length; j++) {
+      let num1 = arr[i];
+      let num2 = arr[j];
+      if (num1 + num2 === target) {
+        seen.push([num1, num2]);
+    }
+    }
+  }
+  return seen;
+}
+console.log(targetSum(arr, 6));
+
+const arr = [1, 2, 3, 4, 5];
+
+function targetIndices(arr,target) {
+  let result = [];
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = i + 1; j < arr.length; j++) {
+      if (arr[i] + arr[j] === target) {
+        result.push([i, j]);
+      }
+    }
+  }
+  return result;
+}
+console.log(targetIndices(arr, 6));
+
+const arr = [1, 2, 3, 4, 5];
+
+function findPairsIndexOptimized(arr, target) {
+  let seen = {};
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    let needed = target - num;
+
+    if (seen[needed] !== undefined) {
+      result.push([seen[needed], i]);
+    }
+
+    seen[num] = i;
+  }
+
+  return result;
+}
+
+console.log(findPairsIndexOptimized(arr, 6));
+
+const str = ["loveleetcode"];
+function firstNonRepeating(str) {
+  let count = {};
+
+  // Step 1: count
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    count[char] = (count[char] || 0) + 1;
+  }
+
+  // Step 2: find first unique
+  for (let i = 0; i < str.length; i++) {
+    if (count[str[i]] === 1) {
+      return str[i];
+    }
+  }
+
+  return null;
+}
+
+console.log(firstNonRepeating("loveleetcode"));
+
+const str = "loveleetcode";
+
+function firstNonRepeatingIndex(str) {
+  let count = {};
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    count[char] = (count[char] || 0) + 1;
+  }
+  for (let i = 0; i< str.length; i++) {
+    if (count[str[i]] === 1) {
+      return i;
+    }
+  }
+  return -1;
+}
+console.log(firstNonRepeatingIndex("loveleetcode"));*/
