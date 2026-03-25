@@ -1199,4 +1199,63 @@ function firstNonRepeatingIndex(str) {
   }
   return -1;
 }
-console.log(firstNonRepeatingIndex("loveleetcode"));*/
+console.log(firstNonRepeatingIndex("loveleetcode"));
+
+const arr = [1, 2, 2, 3, 4, 4, 5];
+
+function removeDuplicates(arr) {
+  let result = {};
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+  for (let j = 0; j < result.length; j++) {
+    if (result[j] === num) {
+      found = true;
+      break
+    }
+  }
+  if (!found) {
+    result.push(num);
+  }      
+  }
+  return result;
+}
+console.log(removeDuplicates[1, 2, 2, 3, 4, 4, 5]);
+
+function removeDuplicates(arr) {
+  let result = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (!result.includes(arr[i])) {
+      result.push(arr[i]);
+    }
+  }
+
+  return result;
+}
+console.log(removeDuplicates[1, 2, 2, 3, 4, 4, 5]);*/
+
+const arr = [1, 2, 2, 3, 3];
+
+function checkFrequency (arr) {
+  let maxCount = 0;
+  let count = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i]; 
+    count[num] = (count[num] || 0) + 1;
+
+    if (count[num] > maxCount) {
+      maxCount = count[num];
+    }
+  }
+  let result = [];
+
+  for (let key in count ) {
+    if (count[key] === maxCount) {
+      result.push(Number(key));
+    }
+  }
+  return result;
+}
+console.log(checkFrequency([1, 2, 2, 3, 3]));
