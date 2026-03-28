@@ -1233,7 +1233,7 @@ function removeDuplicates(arr) {
 
   return result;
 }
-console.log(removeDuplicates[1, 2, 2, 3, 4, 4, 5]);*/
+console.log(removeDuplicates[1, 2, 2, 3, 4, 4, 5]);
 
 const arr = [1, 2, 2, 3, 3];
 
@@ -1259,3 +1259,99 @@ function checkFrequency (arr) {
   return result;
 }
 console.log(checkFrequency([1, 2, 2, 3, 3]));
+
+const arr = ["eat","tea","tan","ate","nat","bat"];
+
+function groupAnagrams(arr) {
+  let map = {};
+
+  for (let i = 0; i< arr.length; i++) {
+    let word = arr[i];
+
+    let key = word.split ("").sort().join("");
+
+    if(!map[key]) {
+      map[key] = [];
+    }
+    map[key].push(word);
+  } 
+  return Object.values(map);
+}
+console.log(groupAnagrams(["eat","tea","tan","ate","nat","bat"]));
+
+const arr = [3, 7, 2, 9, 4];
+
+function findMin(arr) {
+  let min = Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    if (num < min) {
+      min = num;
+    }
+  }
+  return min;
+}
+console.log (findMin(arr));
+
+const arr = [3, 7, 2, 9, 4];
+
+function secondLargestNumber(arr) {
+  let max = -Infinity;
+  let secondMax = -Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    if (num > max) {
+      secondMax = max;
+      max = num;
+    } 
+    else if (num > secondMax && num !== max) {
+      secondMax = num;
+    }
+  }
+
+  return secondMax;
+}
+console.log(secondLargestNumber(arr));
+
+const arr = [2,2,2,1];
+
+function secondMin(arr) {
+  let min = Infinity;
+  let secondMin = Infinity;
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    if (num < min) {
+      secondMin = min;
+      min = num;
+    } 
+    else if (num < secondMin && num !== min) {
+      secondMin = num;
+    }
+  }
+  return secondMin === Infinity ? -1 : secondMin;
+}
+console.log(secondMin(arr));
+
+const arr = [0,1,0,3,12];
+
+function mapZeros(arr) {
+  let pos = 0;
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] !== 0) {
+      let temp = arr[i];
+      arr[i] = arr[pos];
+      arr[pos] = temp;
+
+      pos++;
+    }
+  }
+  return arr;
+}
+console.log(mapZeros(arr));*/
+
+
+
