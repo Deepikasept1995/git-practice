@@ -1351,7 +1351,326 @@ function mapZeros(arr) {
   }
   return arr;
 }
-console.log(mapZeros(arr));*/
+console.log(mapZeros(arr));
+
+const arr = [1,2,3,4];
+ 
+function reverseArray(arr) {
+  let left = 0;
+  let right = arr.length - 1;
+
+  while (left < right) {
+    let temp = arr[left];
+    arr[left] = arr[right];
+    arr[right] = temp;
+
+    left++;
+    right--;
+  }
+
+  return arr;
+}
+console.log(reverseArray(arr));
+
+const arr = [1,2,3,4];
+
+function sumArray(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    sum += num;
+  }
+  return sum;
+}
+console.log(sumArray(arr));
+
+const arr = [1,2,3,4,5,6];
+
+function countEvenNumbers(arr) {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    if (num % 2 === 0) {
+      sum++;
+    }
+  }
+  return sum;
+}
+console.log(countEvenNumbers(arr));
+
+const arr = [1,3,5,6,8];
+
+function firstEvenNumber(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    if (num % 2 === 0) {
+      return num;
+    }
+  }
+
+  return -1;
+}
+
+console.log(firstEvenNumber(arr));
+
+const arr = [1,3,5,6,8];
+
+function firstEvenIndex(arr) {
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    if (num % 2 === 0) {
+      return i;
+    }
+  }
+  return -1;
+}
+console.log(firstEvenIndex(arr));
+
+const arr = [2,7,1,9];
+
+function largestDifference(arr) {
+  let max = -Infinity;
+  let min = Infinity;
+  let diff = 0;
+
+  for (i = 0; i < arr.length; i++) {
+    let num = arr[i];
+
+    if (num < min) {
+      min = num;
+    } 
+    else if (num > max && num !== min) {
+      max = num;
+    } 
+  }
+  return max - min;
+}
+console.log(largestDifference(arr));
+
+const arr = [7,1,5,3,6,4];
+
+function maxDifference(arr) {
+  let min = arr[0];
+  let maxDiff = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    let num = arr[i];
+
+    let diff = num - min;
+
+    if (diff > maxDiff) {
+      maxDiff = diff;
+    }
+
+    if (num < min) {
+      min = num;
+    }
+  }
+
+  return maxDiff;
+}
+
+console.log(maxDifference([7,1,5,3,6,4]));
+
+const arr = [5,4,3,2,1];
+
+function maxDifference(arr) {
+  let min = arr[0];
+  let maxDiff = 0;
+
+  for (let i = 1; i < arr.length; i++) {
+    let num = arr[i];
+
+    let diff = num - min;
+
+    if (diff > maxDiff) {
+      maxDiff = diff;
+    }
+
+    if (num < min) {
+      min = num;
+    }
+  }
+
+  return maxDiff;
+}
+
+console.log(maxDifference(arr));
+
+const words = ["apple", "banana", "apple", "orange", "banana", "apple"];
+
+const freq = words.reduce((acc, word) =>  {
+  acc[word] = (acc[word] || 0) + 1;
+  return acc;
+},{});
+
+let maxWord = "";
+let maxCount = 0;
+
+for (let word in freq) {
+  if (freq[word] > maxCount) {
+    maxCount = freq[word];
+    maxWord = word;
+  }
+}
+console.log(maxWord);
+
+const orders = [
+  {user: "A", amount: 100},
+  {user: "B", amount: 200},
+  {user: "A", amount: 300},
+  {user: "B", amount: 100},
+  {user: "C", amount: 200}
+];
+
+const freq = orders.reduce ((acc, order) => {
+  acc[order.user] = (acc[order.user] || 0) + order.amount;
+  return acc;
+},{});
+
+let maxUser = "";
+let maxCount = 0;
+
+for (let order in freq) {
+  if (freq[order]> maxCount) {
+    maxCount = freq[order];
+    maxUser = order;
+  }
+}
+console.log(maxUser);
+
+const orders = [
+  {user: "A", amount: 100},
+  {user: "B", amount: 200},
+  {user: "A", amount: 300},
+  {user: "B", amount: 100},
+  {user: "C", amount: 200}
+];
+
+const result = orders.reduce((acc, order) => {
+  acc.totals[order.user] = (acc.totals[order.user] || 0) + order.amount;
+
+  if (acc.totals[order.user] > acc.maxAmount) {
+    acc.maxAmount = acc.totals[order.user];
+    acc.maxUser = order.user;
+  }
+
+  return acc;
+}, { totals: {}, maxUser: "", maxAmount: 0 });
+
+console.log(result.maxUser);
+
+const nums = [4, 2, 7, 2, 9, 4, 1];
+
+const freq = nums.reduce((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+
+const result = "";
+
+for (let num of nums) {
+  if (freq[num] === 1) {
+    console.log(num);
+    break;
+  }
+}
+
+const nums = [2, 3, 5, 3, 2, 6, 5];
+
+const freq = nums.reduce ((acc, num) => {
+  acc[num] = (acc[num] || 0)+ 1;
+  return acc;
+},{});
+
+let result = [];
+
+for (let num of nums) {
+  if (freq[num] === 1) {
+    result.push(num);
+  }
+}
+console.log(result);
+
+const nums = [1, 2, 3, 2, 1, 4, 5];
+
+const seen = new Set();
+
+for (let num of nums) {
+  if (seen.has(num)) {
+    console.log(num);
+    break;
+  }
+  seen.add(num);
+}
+
+const nums = [4, 5, 6, 7, 4, 5];
+
+const seen = new Set();
+
+for (let num of nums) {
+  if (seen.has(num)) {
+    console.log(num);
+    break;
+  }
+  seen.add(num);
+}
+
+const nums = [2,1,3,4,2,1,5];
+
+const freq = nums.reduce ((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+
+for (let num of nums) {
+  if (freq[num] > 0) {
+    console.log(num);
+    break;
+  }
+}
+
+const nums = [5, 3, 4, 3, 5, 6];
+
+const freq = nums.reduce((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+
+let maxCount = 0;
+let maxNum = 0;
+
+for (let num in freq) {
+  if (freq[num]> maxCount) {
+    maxCount = freq[num];
+    maxNum = num;
+  }
+}
+console.log(maxNum);
+
+
+const nums = [5, 3, 4, 3, 5, 6];
+
+const freq = nums.reduce((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+
+for (let num of nums) {
+  if (freq[num] > 1) {
+    console.log(num);
+    break;
+  }
+}*/
+
+
+
+
+
+
+
 
 
 
