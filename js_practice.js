@@ -1663,14 +1663,120 @@ for (let num of nums) {
     console.log(num);
     break;
   }
-}*/
+}
+
+const nums = [1, 2, 3, 4, 5];
+
+const freq = nums.reduce ((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+const result = nums.find(num => freq[num] > 1) || null;
+//let result = null;
+
+//for (let num of nums) {
+//  if (freq[num] > 1) {
+//    result = num;
+//  }
+//}
+console.log(result);
+
+const nums = [1, 2, 1, 3, 4, 2, 3];
+
+let left = 0;
+let maxLength = 0;
+const seen = new Set();
+
+for (let right = 0; right < nums.length; right++) {
+  while (seen.has(nums[right])) {
+    seen.delete(nums[left]);
+    left++;
+  }
+
+  seen.add(nums[right]);
+  maxLength = Math.max(maxLength, right - left + 1);
+}
+
+console.log(maxLength);
 
 
+const nums = [1, 2, 3, 2, 4];
 
+let seen = new Set();
+let hasDuplicate = false;
 
+for (let i = 0; i < nums.length; i++) {
+  if (seen.has(nums[i])) {
+    hasDuplicate = true;
+    break;
+  }
+  seen.add(nums[i]);
+}
+console.log(hasDuplicate);
 
+const set = new Set([1, 2, 3, 4]);
 
+const result = new Set();
 
+for (let num of set) {
+  if (num % 2 !== 0) {
+    result.add(num);
+  }
+}
 
+console.log(result);
 
+const nums = [5, 1, 9, 3];
+
+let max = nums[0];
+
+for (let i = 1; i < nums.length; i++) {
+  max = Math.max(max, nums[i]);
+}
+
+console.log(max);
+
+let num = 1234;
+let reversed = 0;
+
+while (num > 0) {
+  let digit = num % 10;
+  reversed = reversed * 10 + digit;
+  num = Math.floor(num / 10);
+}
+console.log(reversed);
+
+const nums = [2, 3, 2, 4, 5, 3, 6];
+
+const freq = nums.reduce ((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+
+let result = null;
+
+for (let num of nums) {
+  if (freq[num] === 1) {
+    result = num;
+    break;
+  }
+}
+console.log(result);*/
+
+const nums = [2, 3, 2, 4, 5, 3, 6];
+
+const freq = nums.reduce ((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{});
+
+let result = null;
+
+for (let i = 0; i < nums.length; i++) {
+  if (freq[nums[i]] === 1) {
+    result = i;
+    break;
+  }
+}
+console.log(result);
 
