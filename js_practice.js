@@ -1761,7 +1761,7 @@ for (let num of nums) {
     break;
   }
 }
-console.log(result);*/
+console.log(result);
 
 const nums = [2, 3, 2, 4, 5, 3, 6];
 
@@ -1778,5 +1778,5 @@ for (let i = 0; i < nums.length; i++) {
     break;
   }
 }
-console.log(result);
+console.log(result);*/
 
