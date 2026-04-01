@@ -1778,5 +1778,171 @@ for (let i = 0; i < nums.length; i++) {
     break;
   }
 }
+console.log(result);
+
+const nums = [1, 2, 3, 4, 2, 3, 5];
+
+let left = 0;
+let maxLength = 0;
+const seen = new Set();
+
+for (let right = 0; right < nums.length; right++) {
+  while (seen.has(nums[right])) {
+    seen.delete(nums[left]);
+    left++;
+  }
+
+  seen.add(nums[right]);
+  maxLength = Math.max(maxLength, right - left + 1);
+}
+
+console.log(maxLength);
+
+const nums = [2, 1, 5, 1, 3, 2];
+const k = 3;
+
+let windowSum = 0;
+for (let i = 0; i < k; i++) {
+  windowSum += nums[i];
+}
+console.log(windowSum);
+
+let maxSum = windowSum;
+
+for (let i = k; i < nums.length; i++) {
+  windowSum = windowSum - nums[i - k] + nums[i];
+  maxSum = Math.max(maxSum, windowSum);
+}
+console.log(maxSum);
+
+const nums = [1, 2, 3, 4, 5];
+
+const result = nums.reduce((acc, num) => {
+  if (num % 2 === 0) {
+    acc += num;
+  }
+  return acc;
+},0);
+console.log(result);
+
+const users = [
+  {name: "A", age: 20},
+  {name: "B", age: 30},
+  {name: "C", age: 25}
+];
+
+const result = users.reduce((acc, user) => {
+  return acc + user.age;
+},0);
+const averageAge = result / users.length;
+
+console.log(averageAge);
+
+const str = "aabbbcdd";
+const freq = str.split("").reduce((acc, ch) => {
+  acc[ch] = (acc[ch] || 0) + 1;
+  return acc;
+},{});
+
+let maxChar = "";
+let maxCount = 0;
+
+for (let ch in freq) {
+  if (freq[ch] > maxCount) {
+    maxCount = freq[ch];
+    maxChar = ch;
+  }
+}
+console.log(maxChar);
+
+const nums = [1, 2, 3, 4, 5];
+
+const result = nums.filter(num => num % 2 === 0);
+const result1 = result.map (num => num * num);
+console.log(result1);
+
+const nums = [1, 2, 3, 4, 5];
+
+const result = nums.filter(num => num % 2 === 0);
+const result1 = result.map (num => num * num);
+
+const result2 = result1.reduce ((acc, rt) => {
+  acc += rt;
+  return acc;
+},0);
+console.log(result2);
+
+const orders = [
+  {user: "A", amount: 100},
+  {user: "B", amount: 200},
+  {user: "A", amount: 300},
+  {user: "C", amount: 400}
+];
+
+const result = orders.reduce((acc, order) => {
+  acc[order.user] = (acc[order.user] || 0) + order.amount;
+  return acc;
+},{});
+
+console.log(result);
+
+const orders = [
+  {user: "A", amount: 100},
+  {user: "B", amount: 200},
+  {user: "A", amount: 300},
+  {user: "C", amount: 400}
+];
+
+const totals = orders.reduce((acc, order) => {
+  acc[order.user] = (acc[order.user] || 0) + order.amount;
+  return acc;
+},{});
+
+let maxUser = "";
+let maxAmount = 0;
+
+for (let user in totals) {
+  if (totals[user] > maxAmount) {
+    maxAmount = totals[user];
+    maxUser = user;
+  }
+}
+
+console.log(maxUser);
+
+const orders = [
+  {user: "A", amount: 100},
+  {user: "B", amount: 200},
+  {user: "A", amount: 300},
+  {user: "C", amount: 400}
+];
+
+const result = orders.reduce((acc, order) => {
+  acc.totals[order.user] = (acc.totals[order.user] || 0) + order.amount;
+
+  if (acc.totals[order.user] > acc.maxAmount) {
+    acc.maxAmount = acc.totals[order.user];
+    acc.maxUser = order.user;
+  }
+
+  return acc;
+}, { totals: {}, maxUser: "", maxAmount: 0 });
+
+console.log(result.maxUser);
+
+const nums = [1, 2, 3, 2, 1, 4];
+
+const totals = nums.reduce ((acc, num) => {
+  acc[num] = (acc[num] || 0) + 1;
+  return acc;
+},{}); 
+
+const result = nums.filter(num => totals[num] === 1);
+
 console.log(result);*/
 
+const freq = { a: 2, b: 3 };
+
+let key = "a";
+
+console.log(freq[key]);
