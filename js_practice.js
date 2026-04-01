@@ -1940,9 +1940,3 @@ const totals = nums.reduce ((acc, num) => {
 const result = nums.filter(num => totals[num] === 1);
 
 console.log(result);*/
-
-const freq = { a: 2, b: 3 };
-
-let key = "a";
-
-console.log(freq[key]);
