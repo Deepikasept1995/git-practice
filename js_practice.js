@@ -1939,4 +1939,135 @@ const totals = nums.reduce ((acc, num) => {
 
 const result = nums.filter(num => totals[num] === 1);
 
-console.log(result);*/
+console.log(result);
+
+const nums = [1, 2, 3, 4, 5, 6];
+
+const result = nums.reduce((acc, num) => {
+  if (num % 2 === 0) {
+    acc.evenSum += num;
+  } else {
+    acc.oddSum += num;
+  }
+  return acc;
+}, { evenSum: 0, oddSum: 0 });
+console.log(result);
+
+const nums = [1,2,3,4,5,6];
+
+const result = nums.reduce ((acc, num) => {
+  if (num % 2 === 0) {
+    acc.even.push(num);
+  } else {
+    acc.odd.push(num);
+  }
+  return acc;
+},{even: [], odd: []});
+console.log(result);
+
+const nums = [1,2,3,4,5,6];
+
+const result = nums.reduce ((acc, num) => {
+  if (num % 2 === 0) {
+    acc.evenSum += num;
+  } else {
+    acc.odd.push(num);
+  }
+  return acc;
+}, {evenSum: 0, odd: []});
+console.log(result);
+
+const orders = [
+  {user: "A", amount: 100},
+  {user: "B", amount: 200},
+  {user: "A", amount: 300},
+  {user: "C", amount: 400}
+];
+
+const result = orders.reduce ((acc, order) => {
+  acc.totals[order.user] = (acc.totals[order.user] || 0) + order.amount;
+  if (acc.totals[order.user] >= 300 && !acc.highSpenders.includes(order.user)) {
+    acc.highSpenders.push(order.user);
+  }
+  return acc;
+}, {totals: {}, highSpenders:[]});
+console.log(result);
+
+const words = ["apple", "banana", "apple", "orange", "banana", "apple"];
+
+const result = words.reduce ((acc, word) => {
+  acc.freq[word] =(acc.freq[word] || 0) + 1;
+  if (acc.freq[word] > acc.maxCount) {
+    acc.maxCount = acc.freq[word];
+    acc.mostFrequent = word;
+  }
+  return acc;
+},{freq: {}, mostFrequent: "", maxCount: 0});
+
+const finalResult = {...result.freq,mostFrequent:result.mostFrequent};
+
+console.log(finalResult);
+
+const nums = [2,3,4,5,6,7];
+
+const result = nums.reduce ((acc, num) => {
+  if (num % 2 === 0) {
+    acc.evenSquares.push(num * num);
+  } else {
+    acc.oddCubes.push(num * num * num);
+  }
+  return acc;
+},{evenSquares: [], oddCubes: []});
+console.log(result);
+
+const orders = [
+  {user: "A", items: [10,20]},
+  {user: "B", items: [5]},
+  {user: "A", items: [15,5]},
+  {user: "C", items: [50]}
+];
+
+const result = orders.reduce ((acc, order) => {
+  acc.totals[order.user] = (acc.totals[order.user] || 0) + order.items.reduce ((a,b) => a + b, 0);
+  if (acc.totals[order.user] > acc.maxItems) {
+    acc.maxItems = acc.totals[order.user];
+    acc.highestUser = [order.user];
+  } else if (acc.totals[order.user] === acc.maxItems) {
+    acc.highestUser.push(order.user);
+  }
+
+  return acc;
+
+},{totals: {}, highestUser: [], maxItems: 0});
+delete result.maxItems;
+console.log(result);
+
+const nums = [1, 2, 3, 4, 5];
+
+let evenSum = 0;
+let oddSum = 0;
+
+for ( i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  if (num % 2 === 0) {
+    evenSum += num;
+  } else {
+    oddSum += num;
+  }
+}
+console.log({evenSum, oddSum});
+
+const nums = [1,2,3,4,5,6];
+
+let evenNumbers = [];
+let oddNumbers = [];
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  if (num % 2 === 0) {
+    evenNumbers.push(num);
+  } else {
+    oddNumbers.push(num);
+  }
+}
+console.log({evenNumbers, oddNumbers});*/
