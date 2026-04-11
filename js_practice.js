@@ -2070,4 +2070,136 @@ for (let i = 0; i < nums.length; i++) {
     oddNumbers.push(num);
   }
 }
-console.log({evenNumbers, oddNumbers});*/
+console.log({evenNumbers, oddNumbers});
+
+const nums = [3, 8, 5, 12, 7, 6];
+
+let evenSum = 0;
+let oddCount = [];
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  if (num % 2 === 0) {
+    evenSum += num;
+  } else {
+    oddCount++;
+  }
+}  
+console.log({evenSum, oddCount});
+
+const nums = [10, 5, 25, 8, 30, 2];
+
+let largestNumber = 0;
+
+for (let i = 1; i < nums.length; i++) {
+  let num = nums[i];
+  if (num > largestNumber ) {
+    largestNumber = num;
+  }
+}
+console.log(largestNumber);
+
+const nums = [10, 5, 25, 8, 30, 2];
+
+let max = -Infinity;
+let secondMax = -Infinity;
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+
+  if (num > max) {
+    secondMax = max;
+    max = num;
+  } else if (num > secondMax && num !== max) {
+    secondMax = num;
+  }
+}
+
+console.log(secondMax);
+
+const str = "aabcbcde";
+
+let freq = {};
+
+for (let i = 0; i < str.length; i++) {
+  let char = str[i];
+  freq[char] = (freq[char] || 0) + 1;
+}
+for (let i = 0; i < str.length; i++) {
+  let char = str[i];
+  if (freq[char] === 1) {
+    console.log(char);
+    break;
+  }
+}
+
+const str = "abcaef";
+
+let seen = {};
+
+for (let i = 0; i < str.length; i++) {
+  let char = str[i];
+
+  if (seen[char]) {
+    console.log(char);
+    break;
+  }
+
+  seen[char] = true;
+}
+
+const str = "abcabcbb";
+
+let seen = {};
+let left = 0;
+let maxLength = 0;
+
+for (let right = 0; right < str.length; right++) {
+  let char = str[right];
+
+  if (seen[char] >= left) {
+    left = seen[char] + 1;
+  }
+
+  seen[char] = right;
+  maxLength = Math.max(maxLength, right - left + 1);
+}
+
+console.log(maxLength);
+
+const str = "pwwkew";
+
+let seen = {};
+let left = 0;
+let maxLength = 0;
+
+for (right = 0; right < str.length; right++) {
+  let char = str[right];
+
+  if (seen[char] >= left) {
+    left = seen[char] + 1;
+  }
+  seen[char] = right;
+  maxLength = Math.max(maxLength, right - left + 1);
+}
+console.log(maxLength);
+
+const nums = [2, 1, 5, 1, 3, 2];
+
+const k = 3;
+
+let windowSum = 0;
+
+for (let i = 0; i < k; i++) {
+  windowSum += nums[i];
+}
+
+let maxSum = windowSum;
+
+for (let i = k; i < nums.length; i++) {
+  windowSum = windowSum - nums[i - k] + nums[i];
+  maxSum = Math.max(maxSum, windowSum);
+}
+console.log(maxSum);*/
+
+
