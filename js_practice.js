@@ -2200,6 +2200,307 @@ for (let i = k; i < nums.length; i++) {
   windowSum = windowSum - nums[i - k] + nums[i];
   maxSum = Math.max(maxSum, windowSum);
 }
-console.log(maxSum);*/
+console.log(maxSum);
 
+const orders = [
+  {
+    orderId: "ORD001",
+    customer: "Amit",
+    city: "Bangalore",
+    status: "delivered",
+    items: [
+      { name: "Shoes", price: 2000, quantity: 1 },
+      { name: "Socks", price: 200, quantity: 3 }
+    ],
+    couponDiscount: 300
+  },
+  {
+    orderId: "ORD002",
+    customer: "Neha",
+    city: "Mumbai",
+    status: "cancelled",
+    items: [
+      { name: "Bag", price: 1500, quantity: 1 }
+    ],
+    couponDiscount: 0
+  },
+  {
+    orderId: "ORD003",
+    customer: "Amit",
+    city: "Bangalore",
+    status: "delivered",
+    items: [
+      { name: "T-shirt", price: 800, quantity: 2 },
+      { name: "Cap", price: 500, quantity: 1 }
+    ],
+    couponDiscount: 100
+  },
+  {
+    orderId: "ORD004",
+    customer: "Sara",
+    city: "Delhi",
+    status: "pending",
+    items: [
+      { name: "Watch", price: 3000, quantity: 1 }
+    ],
+    couponDiscount: 200
+  },
+  {
+    orderId: "ORD005",
+    customer: "Neha",
+    city: "Mumbai",
+    status: "delivered",
+    items: [
+      { name: "Laptop Sleeve", price: 1200, quantity: 1 },
+      { name: "Mouse", price: 700, quantity: 1 }
+    ],
+    couponDiscount: 150
+  }
+];
 
+function getOrderAnalytics(orders) {
+  let totalOrders = orders.length;
+  let statusCounts = {};
+  let totalRevenue = 0;
+  let revenueByCustomer = {};
+  let deliveredCityCounts = {};
+  let itemQuantityMap = {};
+  let deliveredOrderCount = 0;
+  let cancelledOrderIds = [];
+
+  for (let i = 0; i < orders.length; i++) {
+    let order = orders[i];
+    statusCounts[order.status] = (statusCounts[order.status] || 0) + 1;
+    if (order.status === "cancelled") {
+      cancelledOrderIds.push(order.orderId);
+    }
+    if (order.status === "delivered") {
+      deliveredOrderCount++; 
+      deliveredCityCounts[order.city] = (deliveredCityCounts[order.city] || 0) + 1;
+
+      let orderTotal = 0;
+
+      for (let j = 0; j < order.items.length; j++) {
+        let item = order.items[j];
+        let itemTotal = item.price * item.quantity;
+
+        orderTotal += itemTotal;
+        itemQuantityMap[item.name] = (itemQuantityMap[item.name] || 0) + item.quantity;
+      }
+
+      orderTotal = orderTotal - order.couponDiscount;
+      totalRevenue += orderTotal;
+
+      revenueByCustomer[order.customer] = (revenueByCustomer[order.customer] || 0) + orderTotal;
+    }
+  }
+  let topCustomer = "";
+  let highestRevenue = 0;
+
+  for (let customer in revenueByCustomer) {
+    if (revenueByCustomer[customer] > highestRevenue) {
+      highestRevenue = revenueByCustomer[customer];
+      topCustomer = customer;
+    }
+  }
+  let mostSoldItem = "";
+  let highestQuantity = 0;
+
+  for (let itemName in itemQuantityMap) {
+    if (itemQuantityMap[itemName] > highestQuantity) {
+      highestQuantity = itemQuantityMap[itemName];
+      mostSoldItem = itemName;
+    }
+  }
+  let averageOrderValue = 0;
+
+  if (deliveredOrderCount > 0) {
+    averageOrderValue = totalRevenue / deliveredOrderCount;
+  }
+  averageOrderValue = Number(averageOrderValue.toFixed(2));
+
+  return {
+    totalOrders,
+    statusCounts,
+    totalRevenue,
+    revenueByCustomer,
+    topCustomer,
+    deliveredCityCounts,
+    mostSoldItem,
+    averageOrderValue,
+    cancelledOrderIds
+  };
+}
+console.log(getOrderAnalytics(orders));
+
+const tickets = [
+  {
+    ticketId: "T1",
+    customer: "Amit",
+    department: "Payments",
+    priority: "high",
+    status: "open",
+    createdAt: "2026-04-01",
+    resolvedAt: null,
+    messages: 4
+  },
+  {
+    ticketId: "T2",
+    customer: "Neha",
+    department: "Orders",
+    priority: "medium",
+    status: "resolved",
+    createdAt: "2026-04-02",
+    resolvedAt: "2026-04-03",
+    messages: 6
+  },
+  {
+    ticketId: "T3",
+    customer: "Amit",
+    department: "Payments",
+    priority: "high",
+    status: "resolved",
+    createdAt: "2026-04-01",
+    resolvedAt: "2026-04-05",
+    messages: 8
+  },
+  {
+    ticketId: "T4",
+    customer: "Sara",
+    department: "Delivery",
+    priority: "low",
+    status: "open",
+    createdAt: "2026-04-04",
+    resolvedAt: null,
+    messages: 2
+  },
+  {
+    ticketId: "T5",
+    customer: "Neha",
+    department: "Orders",
+    priority: "high",
+    status: "resolved",
+    createdAt: "2026-04-03",
+    resolvedAt: "2026-04-04",
+    messages: 5
+  }
+];
+
+function getTicketAnalytics(tickets) {
+  try {
+    if (!Array.isArray(tickets)) {
+      throw new Error("Invalid input: tickets must be an array");
+    }
+
+    let totalTickets = tickets.length;
+    let statusCounts = {};
+    let priorityCounts = {};
+    let departmentCounts = {};
+    let countByCustomer = {};
+    let openTickets = 0;
+    let resolvedTickets = 0;
+    let highPriorityOpenTicketIds = [];
+    let resolvedTicketIds = [];
+    let totalMessages = 0;
+
+    for (let i = 0; i < tickets.length; i++) {
+      let ticket = tickets[i];
+
+      if (!ticket) continue;
+
+      statusCounts[ticket.status] = (statusCounts[ticket.status] || 0) + 1;
+      priorityCounts[ticket.priority] = (priorityCounts[ticket.priority] || 0) + 1;
+      departmentCounts[ticket.department] = (departmentCounts[ticket.department] || 0) + 1;
+      countByCustomer[ticket.customer] = (countByCustomer[ticket.customer] || 0) + 1;
+
+      totalMessages += ticket.messages || 0;
+
+      if (ticket.status === "open") openTickets++;
+
+      if (ticket.status === "resolved") {
+        resolvedTickets++;
+        resolvedTicketIds.push(ticket.ticketId);
+      }
+
+      if (ticket.priority === "high" && ticket.status === "open") {
+        highPriorityOpenTicketIds.push(ticket.ticketId);
+      }
+    }
+
+    let topCustomer = "";
+    let highestTicketCount = -Infinity;
+
+    for (let customer in countByCustomer) {
+      if (countByCustomer[customer] > highestTicketCount) {
+        highestTicketCount = countByCustomer[customer];
+        topCustomer = customer;
+      }
+    }
+
+    let topDepartment = "";
+    let topDepartmentCount = -Infinity;
+
+    for (let department in departmentCounts) {
+      if (departmentCounts[department] > topDepartmentCount) {
+        topDepartmentCount = departmentCounts[department];
+        topDepartment = department;
+      }
+    }
+
+    let averageMessages = totalTickets > 0
+      ? Number((totalMessages / totalTickets).toFixed(2))
+      : 0;
+
+    return {
+      totalTickets,
+      statusCounts,
+      priorityCounts,
+      departmentCounts,
+      openTickets,
+      resolvedTickets,
+      topCustomer,
+      averageMessages,
+      highPriorityOpenTicketIds,
+      topDepartment,
+      resolvedTicketIds
+    };
+
+  } catch (error) {
+    console.error("Error in getTicketAnalytics:", error.message);
+
+    return {
+      error: true,
+      message: error.message
+    };
+  }
+}
+console.log(getTicketAnalytics(tickets));
+
+const orders = [
+  { status: "delivered", amount: 1000 },
+  { status: "cancelled", amount: 500 },
+  { status: "delivered", amount: 2000 },
+  { status: "pending", amount: 800 }
+];
+
+async function getDeliveredRevenue(orders) {
+  try {
+    if (!Array.isArray(orders)) {
+      throw new Error("Invalid input: orders must be an array");
+    }
+    let deliveredRevenue = 0;
+
+    for (let i = 0; i < orders.length; i++) {
+      let order = orders[i];
+      if (order.status === "delivered") {
+        deliveredRevenue += order.amount;
+      }
+    }
+    return deliveredRevenue;
+
+  } catch (error) {
+    console.error("Error:", error.message);
+    return 0;
+  }
+}
+getDeliveredRevenue(orders).then(console.log);*/
