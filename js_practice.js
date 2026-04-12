@@ -2503,4 +2503,201 @@ async function getDeliveredRevenue(orders) {
     return 0;
   }
 }
-getDeliveredRevenue(orders).then(console.log);*/
+getDeliveredRevenue(orders).then(console.log);
+
+const nums = [1, 2, 3, 4, 5, 6];
+
+let even = 0;
+let odd = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  if (num % 2 === 0) {
+    even++;
+  } else odd++;
+}
+console.log({even, odd});
+
+const nums = [2, 4, 6, 8, 10];
+
+let sum = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  sum += nums[i];
+}
+let average = sum / nums.length;
+
+let greaterCount = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  if (nums[i] > average) {
+    greaterCount++;
+  }
+}
+console.log(greaterCount);
+
+const nums = [2, 4, 6, 8, 10];
+
+let sum = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  sum += nums[i];
+}
+
+let average = sum / nums.length;
+
+let firstGreater = null;
+
+for (let i = 0; i < nums.length; i++) {
+  if (nums[i] > average) {
+    firstGreater = nums[i];
+    break;
+  }
+}
+console.log(firstGreater);
+
+const nums = [5, 2, 8, 1, 3];
+
+let secondSmallestNumber = Infinity;
+let smallestNumber = Infinity;
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  if (num < smallestNumber) {
+    secondSmallestNumber = smallestNumber
+    smallestNumber = num;
+  } else if (num < secondSmallestNumber && num !== smallestNumber) {
+    secondSmallestNumber = num;
+  }
+}
+if (secondSmallestNumber === Infinity) {
+  console.log(null);
+} else {
+  console.log(secondSmallestNumber);
+}
+
+const nums = [3, 0, 1];
+
+let n = nums.length;
+
+let expectedSum = (n * (n + 1)) / 2;
+
+let actualSum = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  actualSum += nums[i];
+}
+let missing = expectedSum - actualSum;
+
+console.log(missing);
+
+const nums = [1, 3, 4, 2, 2];
+
+let seen = {};
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  if (seen[num]) {
+    seen.delete(num);
+//    console.log(num);
+//    break;
+  }
+  
+  seen[num] = true;
+}
+console.log(seen);
+
+const nums = [1, 2, 3, 2, 3, 4, 5, 1];
+
+let result = [];
+let seen = {};
+let added = {};
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+
+  if (seen[num] && !added[num]) {
+    result.push(num);
+    added[num] = true;
+  } else {
+    seen[num] = true;
+  }
+}
+
+console.log(result);
+
+const nums = [1, 2, 2, 3, 3, 3];
+
+let result = {};
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  result[num] = (result[num] || 0) + 1;
+}
+console.log(result);
+
+const nums = [1, 2, 2, 3, 3, 3];
+
+let result = {};
+let mostFreq = null;
+let maxCount = 0;
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  result[num] = (result[num] || 0) + 1;
+}
+for (let key in result ) {
+  if (result[key] > maxCount) {
+    maxCount = result[key];
+    mostFreq = Number(key);
+  }
+}
+console.log(mostFreq);
+
+const nums = [-2, 1, -3, 4, -1, 2, 1, -5, 4];
+
+let currentSum = nums[0];
+let maxSum = nums[0];
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+
+  currentSum = Math.max(num, currentSum + num);
+  maxSum = Math.max(maxSum, currentSum);
+}
+console.log(maxSum);
+
+const nums = [5, 4, -1, 7, 8];
+
+let currentSum = nums[0];
+let maxSum = nums[0];
+
+for (let i = 1; i < nums.length; i++) {
+  let num = nums[i];
+
+  currentSum = Math.max(num, currentSum + num);
+  maxSum = Math.max(maxSum, currentSum);
+}
+console.log(maxSum);
+
+const nums = [2, 3, -2, 4];
+
+let currentMax = nums[0];
+let currentMin = nums[0];
+let maxProduct = nums[0];
+
+for (let i = 1; i < nums.length; i++) {
+  let num = nums[i];
+
+  if (num < 0) {
+    let temp = currentMax;
+    currentMax = currentMin;
+    currentMin = temp;
+  }
+
+  currentMax = Math.max(num, currentMax * num);
+  currentMin = Math.min(num, currentMin * num);
+
+  maxProduct = Math.max(maxProduct, currentMax);
+}
+console.log(maxProduct);*/
