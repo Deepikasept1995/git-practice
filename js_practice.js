@@ -2701,3 +2701,4 @@ for (let i = 1; i < nums.length; i++) {
   maxProduct = Math.max(maxProduct, currentMax);
 }
 console.log(maxProduct);*/
+
