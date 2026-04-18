@@ -2888,7 +2888,7 @@ function processString(str) {
   }
   return [...new Set(str)];
 }
-console.log(processString("abca"));*/
+console.log(processString("abca"));
 
 const str = "abcabc"
 
@@ -2910,4 +2910,5 @@ function longestSubstring(str) {
   return maxLength;
 }
 
-console.log(longestSubstring("abcabc"));
+console.log(longestSubstring("abcabc"));*/
+
