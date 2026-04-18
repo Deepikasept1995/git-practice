@@ -2700,5 +2700,214 @@ for (let i = 1; i < nums.length; i++) {
 
   maxProduct = Math.max(maxProduct, currentMax);
 }
-console.log(maxProduct);*/
+console.log(maxProduct);
 
+const nums = [2, 3, -2, 4];
+
+function maxSubArray(nums) {
+  let currentSum = nums[0];
+  let maxSum = nums[0];
+
+  for (let i = 1; i < nums.length; i++) {
+    let num = nums[i];
+
+    currentSum = Math.max(num, currentSum + num);
+    maxSum = Math.max(maxSum, currentSum);
+  }
+
+  return maxSum;
+}
+console.log(maxSubArray(nums));
+
+const nums = [2, 3, -2, 4];
+function maxSubArray(nums) {
+  let currentSum = nums[0];
+  let maxSum = nums[0];
+
+  let start = 0;
+  let end = 0;
+  let tempStart = 0;
+
+  for (let i = 1; i < nums.length; i++) {
+    let num = nums[i];
+
+    if (num > currentSum + num) {
+      currentSum = num;
+      tempStart = i;
+    } else {
+      currentSum = currentSum + num;
+    }
+
+    if (currentSum > maxSum) {
+      maxSum = currentSum;
+      start = tempStart;
+      end = i;
+    }
+  }
+
+  return nums.slice(start, end + 1);
+}
+
+console.log(maxSubArray([2, 3, -2, 4]));
+
+const nums = [2, 3, -2, 4];
+
+let currentMax = nums[0];
+let currentMin = nums[0];
+let maxProduct = nums[0];
+
+for (let i = 1; i < nums.length; i++) {
+  let num = nums[i];
+
+  if (num < 0) {
+    let temp = currentMax;
+    currentMax = currentMin;
+    currentMin = temp;
+  }
+
+  currentMax = Math.max(num, currentMax * num);
+  currentMin = Math.min(num, currentMin * num);
+
+  maxProduct = Math.max(maxProduct, currentMax);
+}
+console.log(maxProduct);
+
+const str = "leetcode"
+
+function firstUniqueChar(str) {
+  let count = {};
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    count[char] = (count[char] || 0) + 1;
+  }
+  for (let i = 0; i < str.length; i++) {
+    if (count[str[i]] === 1) {
+      return i;
+    }
+  }
+  return null;
+}
+console.log(firstUniqueChar(str));
+
+const str = "loveleetcode"
+
+function firstNonRepeatingChar(str) {
+  let count = {};
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    count[char] = (count[char] || 0) + 1;
+  }
+  for (let i = 0; i < str.length; i++) {
+    if (count[str[i]] === 1) {
+      return i;
+    }
+  }
+  return null;
+}
+console.log(firstNonRepeatingChar(str));
+
+const str = "aabb";
+
+function firstNonRepeatingChar(str) {
+  let count = {};
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+    count[char] = (count[char] || 0) + 1;
+  }
+  for (let i = 0; i < str.length; i++) {
+    if (count[str[i]] === 1) {
+      return i;
+    }
+  }
+  return -1;
+}
+console.log(firstNonRepeatingChar(str));
+
+const str = "abcabcbb";
+
+function lengthOfLongestSubstring(str) {
+  let set = new Set();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    while (set.has(str[right])) {
+      set.delete(str[left]);
+      left++;
+    }
+
+    set.add(str[right]);
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
+
+const set = new Set();
+
+set.add(1);
+set.add(2);
+set.add(3);
+set.add(2);
+
+console.log([...set]);
+console.log(set.size);
+
+const arr = [1, 2, 2, 3, 4, 4, 5];
+
+function removeDuplicates(arr) {
+  let set = new Set();
+
+  for (let i = 0; i < arr.length; i++) {
+    let num = arr[i];
+    set.add(num);
+  }
+  return [... new Set(arr)];
+}
+console.log(removeDuplicates([1, 2, 2, 3, 4, 4, 5]));
+
+
+const str = "abca";
+
+function processString(str) {
+  let set = new Set(); 
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i];
+
+    if (set.has(char)) {
+      set.delete(char);
+    } else {
+      set.add(char);
+    }
+  }
+  return [...new Set(str)];
+}
+console.log(processString("abca"));*/
+
+const str = "abcabc"
+
+function longestSubstring(str) {
+  let set = new Set();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    while (set.has(str[right])) {
+      set.delete(str[left]);
+      left++;
+    }
+
+    set.add(str[right]);
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+
+console.log(longestSubstring("abcabc"));
