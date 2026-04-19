@@ -2910,5 +2910,231 @@ function longestSubstring(str) {
   return maxLength;
 }
 
-console.log(longestSubstring("abcabc"));*/
+console.log(longestSubstring("abcabc"));
+
+const nums = [1, 2, 2, 3, 3, 3, 4];
+
+function aggregatedCount(nums) {
+  let freq = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    freq[num] = (freq[num] || 0) + 1;
+  }
+  return freq;
+}
+console.log(aggregatedCount(nums));
+
+const aggregatedCount = nums.reduce ((freq, num) => {
+  freq[num] = (freq[num] || 0) + 1;
+  return freq;
+},{});
+console.log(aggregatedCount);
+
+const nums = [1, 2, 2, 3, 3, 4];
+
+let freq = {};
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+  freq[num] = (freq[num] || 0) + 1;
+}
+
+let firstNonRepeating = null;
+
+for (let i = 0; i < nums.length; i++) {
+  if (freq[nums[i]] === 1) {
+    firstNonRepeating = nums[i];
+    break;
+  }
+}
+console.log(firstNonRepeating);
+
+const nums = [1, 2, 2, 3, 3, 4];
+
+function firstRepeatingNumber(nums) {
+  let seen = new Set()
+
+  for (let num of nums) {
+    if (seen.has(num)) {
+      return num;
+    }
+    seen.add(num);
+  }
+  return null;
+}
+console.log(firstRepeatingNumber(nums));
+
+const str = "aabbcde";
+function firstNonRepeatingChar(str) {
+  let freq = {};
+
+  for (let char of str) {
+    freq[char] = (freq[char] || 0) + 1;
+  }
+
+  for (let char of str) {
+    if (freq[char] === 1) {
+      return char;
+    }
+  }
+  return null;
+}
+console.log(firstNonRepeatingChar(str));
+
+const str = "abcabcbb";
+
+function lengthOfLongestSubstring(str) {
+  let set = new Set();
+  let left = 0;
+  let maxLength = 0;
+
+  for (let right = 0; right < str.length; right++) {
+    while (set.has(str[right])) {
+      set.delete(str[left]);
+      left++;
+    }
+
+    set.add(str[right]);
+    maxLength = Math.max(maxLength, right - left + 1);
+  }
+
+  return maxLength;
+}
+
+console.log(lengthOfLongestSubstring("abcabcbb"));
+
+let count = 1;
+const max = 100;
+
+const timer = setInterval(() => {
+  console.log(count);
+  
+  if (count >= max) {
+    clearInterval(timer);
+    console.log("Timer Finished!");
+  }
+  
+  count++;
+}, 1000);
+
+let count = 1;
+const max = 100;
+
+function startRandomTimer() {
+  if (count <= max) {
+    console.log(count);
+    
+    const randomDelay = Math.floor(Math.random() * (2000 - 500 + 1)) + 500;
+    
+    count++;
+    
+    setTimeout(startRandomTimer, randomDelay);
+  } else {
+    console.log("Timer Finished!");
+  }
+}
+
+startRandomTimer();
+
+const timer = setInterval(() => {
+  const randomNumber = Math.floor(Math.random() * 100) + 1;
+
+  console.log(randomNumber);
+}, 1000);
+
+let numbers = Array.from({ length: 10 }, (_, i) => i + 1);
+
+for (let i = numbers.length - 1; i > 0; i--) {
+  const j = Math.floor(Math.random() * (i + 1));
+  [numbers[i], numbers[j]] = [numbers[j], numbers[i]];
+}
+
+const timer = setInterval(() => {
+  if (numbers.length > 0) {
+    const nextNum = numbers.pop();
+    console.log(nextNum);
+  } else {
+    clearInterval(timer);
+    console.log("All unique numbers generated!");
+  }
+}, 1000);
+
+function delayMessage(msg, time) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(msg);
+      resolve();
+    }, time);
+  });
+}
+/*async function main() {
+  await delayMessage("Hello", 2000);
+  console.log("Done");
+}
+main();
+
+async function main() {
+  await delayMessage("Step 1", 1000);
+  await delayMessage("Step 2", 1000);
+  await delayMessage("Step 3", 1000);
+}
+
+main();
+
+
+function delayMessage(msg,time) {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      console.log(msg);
+      resolve();
+    }, time);
+  });
+}
+async function main() {
+  await Promise.all([delayMessage("Task 1", 2000),
+  delayMessage("Task 2", 2000),
+  delayMessage("Task 3", 2000)
+]);
+} 
+main();
+
+async function fetchWithRetry(fn, retries) {
+  for (let i = 0; i <= retries; i++) {
+    try {
+      return await fn();
+    } catch (error) {
+      if (i === retries) throw error;
+      console.log(`Attempt ${i + 1} failed. Retrying...`);
+    }
+  }
+}
+
+let count = 0;
+const apiCall = async () => {
+  count++;
+  if (count < 3) {
+    throw new Error("Server Down");
+  }
+  return "Success! Data received.";
+};
+
+async function run() {
+  try {
+    const result = await fetchWithRetry(apiCall, 3);
+    console.log(result);
+  } catch (err) {
+    console.log("Final Failure:", err.message);
+  }
+}
+
+run();*/
+
+
+
+
+
+
+
+
 
