@@ -3128,7 +3128,59 @@ async function run() {
   }
 }
 
-run();*/
+run();
+
+const nums = [1,2,3,4,5,6];
+
+function groupByParity(nums) {
+  let even = [];
+  let odd = [];
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    if (num % 2 === 0) {
+      even.push(num);
+    } else {
+      odd.push(num);
+    }
+  }
+  return {even, odd};
+}
+console.log(groupByParity(nums));
+
+function countVowels(str) {
+  let count = 0;
+  const vowels = ["a", "e", "i", "o", "u"];
+
+  for (let i = 0; i < str.length; i++) {
+    let char = str[i].toLowerCase();
+    if (vowels.includes(char)) {
+      count++;
+    }
+  }
+  return count;
+}
+console.log(countVowels("javascript"));
+
+const nums = [1,2,3];
+function findLargest(nums) {
+  let largest = -Infinity;
+  let secondLargest = -Infinity;
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+
+    if (num > largest) {
+      secondLargest = num;
+      largest = num;
+      } else if (num > secondLargest && num !== largest) {
+        secondLargest = num;
+    }
+  }
+  return largest;
+}
+console.log(findLargest(nums));*/
+
 
 
 
