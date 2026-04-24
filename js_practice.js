@@ -3179,7 +3179,37 @@ function findLargest(nums) {
   }
   return largest;
 }
-console.log(findLargest(nums));*/
+console.log(findLargest(nums));
+
+const users = [
+  { name: "A", active: true },
+  { name: "B", active: false },
+  { name: "C", active: true }
+];
+
+
+function activeUsers(users) {
+  
+  let result = [];
+
+for (let i = 0; i < users.length; i++) {
+  let user = users[i];
+  if (user.active === true) {
+    result.push(user.name);
+  }
+}
+  return result;
+}
+console.log(activeUsers(users));
+
+const result = users.reduce ((acc, user) => {
+  if (user.active === true) {
+    acc.activeUsers.push(user.name);
+}
+return acc;
+},{activeUsers: []});
+console.log(result);*/
+
 
 
 
