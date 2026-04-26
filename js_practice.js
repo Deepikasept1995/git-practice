@@ -3208,10 +3208,35 @@ const result = users.reduce ((acc, user) => {
 }
 return acc;
 },{activeUsers: []});
-console.log(result);*/
+console.log(result);
 
+const arr = [1, 2, 2, 3, 3, 3, 4];
 
+let result = {};
 
+for (let i = 0; i < arr.length; i++) {
+  let num = arr[i];
+  result[num] = (result[num] || 0) + 1;
+}
+
+console.log(result);
+
+const str = "aabccdeff";
+
+let freq = {};
+
+for (let i = 0; i < str.length; i++) {
+  let char = str[i];
+  freq[char] = (freq[char] || 0) + 1;
+}
+for (let i = 0; i < str.length; i++) {
+  let char = str[i];
+  if (freq[char] === 1) {
+    console.log(char);
+    break;
+  }
+}*/
+ 
 
 
 
