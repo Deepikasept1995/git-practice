@@ -3235,4 +3235,39 @@ for (let i = 0; i < str.length; i++) {
     console.log(char);
     break;
   }
-}*/
+}
+
+const nums = [10, 5, 8, 20, 15];
+
+let max = -Infinity;
+let secondMax = -Infinity;
+
+for (let i = 0; i < nums.length; i++) {
+  let num = nums[i];
+
+  if (num > max) {
+    secondMax = max;
+    max = num;
+  } else if (num > secondMax && num !== max)
+    secondMax = num;
+}
+console.log(secondMax);
+
+const nums = [4, 5, 1, 2, 0, 4];
+
+function firstNonRepeating(nums) {
+  
+  let freq = {};
+
+  for (let i = 0; i < nums.length; i++) {
+    let num = nums[i];
+    freq[num] = (freq[num] || 0) + 1;
+  }
+  for (let i = 0; i < nums.length; i++) {
+    if (freq[nums[i]] === 1) {
+      return nums[i];   
+    }
+  }
+  return null;
+}
+console.log(firstNonRepeating(nums));*/
