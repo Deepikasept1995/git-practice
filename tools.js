@@ -13,7 +13,7 @@ export const getOrders = tool(
             },
         });
         if (!res.ok) throw new Error("Failed to get the orders");
-        return JSON.stringify(await res.json());
+        return await res.json();
     },
     {
         name: "getOrders",
