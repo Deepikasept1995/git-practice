@@ -3271,3 +3271,95 @@ function firstNonRepeating(nums) {
   return null;
 }
 console.log(firstNonRepeating(nums));*/
+
+require("dotenv").config();
+
+const base = process.env.BASE_URL;
+const apiKey = process.env.API_KEY;
+
+async function getData() {
+  const controller = new AbortController();
+
+  const timeoutId = setTimeout(() => {
+    controller.abort();
+  }, 3000);
+
+  try {
+    const response = await fetch (`${base}/orders`, {
+      headers: {
+        "x-api-key": apiKey,
+      },
+      signal: controller.signal,
+    });
+
+    clearTimeout(timeoutId);
+
+    if (!response.ok) {
+      return {
+        success: false,
+        status: response.status,
+        count: 0,
+        orders: [],
+        error: "API request failed",
+      };
+    }
+
+    const data = await response.json();
+
+    return {
+      success: true,
+      status: response.status,
+      count: data.length,
+      orders: data,
+    };
+
+  } catch (error) {
+    clearTimeout(timeoutId);
+
+    if(error.name === "AbortError") {
+      return {
+        success: false,
+        status: 408,
+        count: 0,
+        orders: [],
+        error: "request timeout",
+      };
+    }
+    return {
+      success: false,
+      status: 500,
+      count: 0,
+      orders: [],
+      error: error.message,
+    };
+  }
+}
+function wait(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+async function getDataWithRetry(retries = 2) {
+  for (let attempt = 1; attempt <= retries + 1; attempt++) {
+    const result = await getData();
+
+    if (result.success) {
+      return result;
+    }
+    console.log(`Attempt ${attempt} failed:`, result.error);
+
+    if(result.status >= 400 && result.status < 500 && result.status !== 408) {
+      return result;
+    }
+
+    if(attempt > retries) {
+      return result;
+    }
+    await wait(1000);
+  }
+}
+ 
+async function main() {
+  const result = await getDataWithRetry(2);
+  console.log(result);
+}
+
+main();
