@@ -3270,7 +3270,7 @@ function firstNonRepeating(nums) {
   }
   return null;
 }
-console.log(firstNonRepeating(nums));*/
+console.log(firstNonRepeating(nums));
 
 require("dotenv").config();
 
@@ -3363,3 +3363,36 @@ async function main() {
 }
 
 main();
+
+require ("dotenv").config();
+
+const base = process.env.BASE_URL;
+const apiKey = process.env.API_KEY;
+
+async function getOrders() {
+  const response = await fetch (`${base}/orders`, {
+    headers: {
+      "x-api-key": apiKey,
+    },
+  });
+  if (!response.ok) {
+    return {
+      success: false,
+      status: response.status,
+      error: "API request failed"
+    };    
+  }
+  const data = await response.json();
+  return {
+    success: true,
+    status: response.status,
+    count: data.length,
+    orders: data,
+  }
+};
+
+async function main() {
+  const result = await getOrders();
+  console.log(result);
+}
+main();*/
