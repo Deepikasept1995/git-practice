@@ -3395,4 +3395,158 @@ async function main() {
   const result = await getOrders();
   console.log(result);
 }
-main();*/
+main();
+
+function fetchUser() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ id: 1, name: "Sandeep" });
+    }, 1000);
+  });
+}
+async function getName() {
+  const user = await fetchUser();
+  console.log(user.name);
+}
+getName();
+
+function fetchOrder() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        order_id: "ORD001",
+        product: "Keyboard",
+        amount: 999
+      });
+    }, 1000);
+  });
+}
+async function getAmount() {
+  const order = await fetchOrder();
+  return order.amount;
+}
+getAmount().then((amount) => console.log(amount));
+
+function fetchPrice() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(1000);
+    }, 1000);
+  });
+}
+
+function fetchDeliveryCharge() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(50);
+    }, 1000);
+  });
+}
+
+async function calculateTotal() {
+  const price = await fetchPrice();
+  const deliveryCharge = await fetchDeliveryCharge();
+  return price + deliveryCharge;
+}
+calculateTotal().then((total) => console.log(total));
+
+function fetchPaymentStatus() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      reject("Payment failed");
+    }, 1000);
+  });
+}
+
+async function checkPayment() {
+  try {
+    const status = await fetchPaymentStatus();
+
+    return {
+      success: true,
+      status: status
+    };
+
+  } catch (error) {
+    return {
+      success: false,
+      error: error
+    };
+  }
+}
+
+checkPayment().then((result) => console.log(result));
+
+function fetchOrder() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        order_id: "ORD001",
+        product: "Mouse",
+        price: 499
+      });
+    }, 1000);
+  });
+}
+
+async function getOrderDetails() {
+  const order = await fetchOrder();
+  return {
+    success: true,
+    order: order.order_id,
+    product: order.product,
+    price: order.price,
+  };
+}
+getOrderDetails().then((details) => console.log(details));
+
+function fetchProduct() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({
+        product_id: "P001",
+        name: "Keyboard",
+        mrp: 1500,
+        selling_price: 999
+      });
+    }, 1000);
+  });
+}
+
+async function getDiscount() {
+  const product = await fetchProduct();
+  const discount = product.mrp - product.selling_price;
+  return {
+    success: true,
+    product_id: product.product_id,
+    name: product.name,
+    discount: discount
+  };
+}
+getDiscount().then((result) => console.log(result));
+
+function fetchProduct() {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(null);
+    }, 1000);
+  });
+}
+
+async function getProductDetails() {
+  const product = await fetchProduct();
+  if (!product) {
+    return {
+      success: false,
+      message: "Product not found"
+    };
+  } else {
+    return {
+      success: true,
+      product_id: product.product_id,
+      name: product.name,
+    }
+  }
+}
+getProductDetails().then((result) => console.log(result));*/
+
